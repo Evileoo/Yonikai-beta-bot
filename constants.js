@@ -1,4 +1,4 @@
 module.exports = Object.freeze({
     MAINCOLOR: 0xFF0000,
-    DEVCREDIT: "hellBot by Evileoo_",
+    DEVCREDIT: "Yonikai Bot by Evileoo_",
 });
