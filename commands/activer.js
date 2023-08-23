@@ -1,4 +1,4 @@
-const { SlashCommandBuilder,  PermissionsBitField, EmbedBuilder, ChannelType } = require("discord.js");
+const { SlashCommandBuilder,  PermissionsBitField, ChannelType } = require("discord.js");
 const constants = require("../constants");
 
 module.exports = {
@@ -58,16 +58,24 @@ module.exports = {
                     if(channel){
                         //confirmer la création du salon
                         interaction.reply({
-                            content : "Salon créé, le salon est identifié par son nom, veuillez ne pas toucher au nom de celui-ci",
+                            content : "Salon créé, le salon est identifié par son nom, veuillez ne pas y toucher",
                             ephemeral: true
                         });
 
                         //Comptage et affichage du nombre de membres présents sur le serveur
                         const memberCount = interaction.guild.members.cache;
 
-                        return interaction.guild.channels.cache.get(channel.id).send({
-                            content: `Nombre de membres : ${memberCount.size}`
+                        //Création d'un premier message inutile afin d'éviter le ping
+                        await interaction.guild.channels.cache.get(channel.id).send({
+                            content: `Chargement...`
                         });
+
+                        //Affichage du compteur de membres
+                        channel.messages.fetch({ limit: 1 }).then( messages =>
+                            messages.forEach(m => {
+                                m.edit(`@everyone : ${memberCount.size}`);
+                            })
+                        );
                     } else {
                         return interaction.reply({
                             content : "Une erreur est survenue, veuillez faire un rapport",

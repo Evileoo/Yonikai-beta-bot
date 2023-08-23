@@ -1,4 +1,4 @@
-const { SlashCommandBuilder,  PermissionsBitField, EmbedBuilder, ChannelType, Embed } = require("discord.js");
+const { SlashCommandBuilder,  PermissionsBitField, EmbedBuilder } = require("discord.js");
 const constants = require("../constants");
 
 module.exports = {
@@ -18,20 +18,8 @@ module.exports = {
 
         //récupération du contenu de la commande
         const panel = interaction.options.getString("commande");
-        
-        //Vérification des droits du bot
-        if(!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.Administrator)){
-            return interaction.reply({
-                embeds: [{
-                    title: `Erreur !`,
-                    description: `Droits d'administrateur requis pour l'exécution de la commande **activate**`,
-                    color: constants.MAINCOLOR
-                }],
-                ephemeral: true
-            });
-        }
 
-        
+        //Exécution de la commande
         switch(panel){
             case "stats":
                 //Vérification des permissions de l'utilisateur et du bot
@@ -43,7 +31,8 @@ module.exports = {
                 .setDescription("Liste des commandes liées aux statistiques du serveur")
                 .setColor(constants.MAINCOLOR)
                 .addFields(
-                    { name: `Ajout d'une statistique`, value: `\`/stats ajouter @role\``},
+                    { name: `Ajout d'une statistique`, value: `\`/stats ajouter @role [emplacement]\`\nL'\`emplacement\` n'est pas obligatoire, il a pour valeur par défaut la fin du message\nPour utiliser l'\`emplacement\`, il faut mettre la ligne à laquelle vous voulez que le compteur s'affiche`},
+                    { name: `Ajout d'une statistique`, value: `\`/stats modifier @role\` [emplacement]\nL'\`emplacement\` n'est pas obligatoire, il a pour valeur par défaut la fin du message\nPour utiliser l'\`emplacement\`, il faut mettre la ligne à laquelle vous voulez que le compteur s'affiche`},
                     { name: `Suppression d'une statistique`, value: `\`/stats supprimer @role\``}
                 )
                 .setFooter({ text: constants.DEVCREDIT });
