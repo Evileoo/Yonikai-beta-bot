@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("activer")
 		.setDescription("Permet d'activer des fonctionnalités du bot")
-        //.setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+        .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
         .addStringOption( (option) =>
             option
             .setName("nom")

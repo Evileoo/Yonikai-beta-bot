@@ -1,11 +1,10 @@
-const { SlashCommandBuilder,  PermissionsBitField, EmbedBuilder, ChannelType, Embed } = require("discord.js");
-const constants = require("../constants");
+const { SlashCommandBuilder,  PermissionsBitField } = require("discord.js");
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("stats")
 		.setDescription("Ajout et Suppression de statistiques serveur")
-        //.setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+        .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
         .addStringOption( o =>
             o
             .setName("type")

@@ -1,5 +1,4 @@
-const { SlashCommandBuilder,  PermissionsBitField, EmbedBuilder, ChannelType, Embed } = require("discord.js");
-const constants = require("../constants");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
 	data: new SlashCommandBuilder()
