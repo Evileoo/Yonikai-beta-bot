@@ -12,6 +12,7 @@ module.exports = {
             .setRequired(true)
             .addChoices(
                 { name: "statistiques du serveur", value: "stats" },
+                { name: "activation de fonctionnalité", value: "activer" },
             )
         ),
 	async execute(interaction) {
@@ -23,23 +24,45 @@ module.exports = {
         switch(panel){
             case "stats":
                 //Vérification des permissions de l'utilisateur et du bot
-                //missingPermissions(PermissionsBitField.Flags.Administrator);
+                missingPermissions(PermissionsBitField.Flags.Administrator);
 
                 //Edition du message de réponse
-                const replyEmbed = new EmbedBuilder()
+                const replyPanel = new EmbedBuilder()
                 .setTitle("Panel Statistiques")
-                .setDescription("Liste des commandes liées aux statistiques du serveur")
+                .setDescription("Liste des commandes liées aux statistiques du serveur\n* : paramètre optionnel")
                 .setColor(constants.MAINCOLOR)
                 .addFields(
-                    { name: `Ajout d'une statistique`, value: `\`/stats ajouter @role [emplacement]\`\nL'\`emplacement\` n'est pas obligatoire, il a pour valeur par défaut la fin du message\nPour utiliser l'\`emplacement\`, il faut mettre la ligne à laquelle vous voulez que le compteur s'affiche`},
-                    { name: `Ajout d'une statistique`, value: `\`/stats modifier @role [emplacement]\`\nL'\`emplacement\` n'est pas obligatoire, il a pour valeur par défaut la fin du message\nPour utiliser l'\`emplacement\`, il faut mettre la ligne à laquelle vous voulez que le compteur s'affiche`},
-                    { name: `Suppression d'une statistique`, value: `\`/stats supprimer @role\``}
+                    { name: `Ajout d'une statistique`, value: `\`/stats [ajouter] [@role] [emplacement*]\``},
+                    { name: `Modification d'une statistique`, value: `\`/stats modifier @role [emplacement*]\``},
+                    { name: `Suppression d'une statistique`, value: `\`/stats [supprimer] [@role]\``},
+                    { name: `Besoin de détails ?`, value: `[Cliquer ici](https://github.com/Evileoo/Yonikai-Bot/wiki#stats-type-role-emplacement)`},
                 )
                 .setFooter({ text: constants.DEVCREDIT });
 
                 //Envoi du message
                 return interaction.reply({
-                    embeds: [replyEmbed],
+                    embeds: [replyPanel],
+                    ephemeral: true
+                });
+            break;
+            case "activer":
+                //Vérification des permissions de l'utilisateur et du bot
+                missingPermissions(PermissionsBitField.Flags.Administrator);
+
+                //Edition du message de réponse
+                const replyActiver = new EmbedBuilder()
+                .setTitle("Panel Statistiques")
+                .setDescription("Liste des commandes liées à l'activation d'une fonctionnalité")
+                .setColor(constants.MAINCOLOR)
+                .addFields(
+                    { name: `Activer une fonctionnalité`, value: `\`/activer [fonctionnalité]\``},
+                    { name: `Besoin de détails ?`, value: `[Cliquer ici](https://github.com/Evileoo/Yonikai-Bot/wiki#activer-fonctionnalit%C3%A9)`},
+                )
+                .setFooter({ text: constants.DEVCREDIT });
+
+                //Envoi du message
+                return interaction.reply({
+                    embeds: [replyActiver],
                     ephemeral: true
                 });
             break;
