@@ -1,4 +1,4 @@
-const { Events } = require("discord.js");
+const { Events, ActivityType } = require("discord.js");
 const { updateStats } = require("../functions/stats.js");
 
 module.exports = {
@@ -7,6 +7,15 @@ module.exports = {
 	execute(client) {
 		//Message de connexion du bot
 		console.log(`Prêt ! Connecté en tant que ${client.user.tag}`);
+
+		//Setup des infos affichées du bot
+		client.user.setPresence({ 
+			activities: [{ 
+				name: '/wiki',
+				type: ActivityType.Custom,
+			}], 
+			status: 'online'
+		});
 
 		//Parcours de chaque serveur dans lequel le bot est
 		const Guilds = client.guilds.cache.map(guild => {
