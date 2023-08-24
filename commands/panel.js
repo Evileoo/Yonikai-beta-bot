@@ -23,7 +23,7 @@ module.exports = {
         switch(panel){
             case "stats":
                 //Vérification des permissions de l'utilisateur et du bot
-                missingPermissions(PermissionsBitField.Flags.Administrator);
+                //missingPermissions(PermissionsBitField.Flags.Administrator);
 
                 //Edition du message de réponse
                 const replyEmbed = new EmbedBuilder()
@@ -32,7 +32,7 @@ module.exports = {
                 .setColor(constants.MAINCOLOR)
                 .addFields(
                     { name: `Ajout d'une statistique`, value: `\`/stats ajouter @role [emplacement]\`\nL'\`emplacement\` n'est pas obligatoire, il a pour valeur par défaut la fin du message\nPour utiliser l'\`emplacement\`, il faut mettre la ligne à laquelle vous voulez que le compteur s'affiche`},
-                    { name: `Ajout d'une statistique`, value: `\`/stats modifier @role\` [emplacement]\nL'\`emplacement\` n'est pas obligatoire, il a pour valeur par défaut la fin du message\nPour utiliser l'\`emplacement\`, il faut mettre la ligne à laquelle vous voulez que le compteur s'affiche`},
+                    { name: `Ajout d'une statistique`, value: `\`/stats modifier @role [emplacement]\`\nL'\`emplacement\` n'est pas obligatoire, il a pour valeur par défaut la fin du message\nPour utiliser l'\`emplacement\`, il faut mettre la ligne à laquelle vous voulez que le compteur s'affiche`},
                     { name: `Suppression d'une statistique`, value: `\`/stats supprimer @role\``}
                 )
                 .setFooter({ text: constants.DEVCREDIT });

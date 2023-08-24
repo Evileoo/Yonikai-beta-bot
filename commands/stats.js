@@ -67,7 +67,7 @@ module.exports = {
 
                     //Cas du @everyone
                     if(role.name == "@everyone") isEveryone = true;
-                    if(tab[i][0] == "@everyone") roleExists = true;
+                    if(tab[i][0] == "@everyone" && role.name == tab[i][0]) roleExists = true;
                 }
 
                 let index;
