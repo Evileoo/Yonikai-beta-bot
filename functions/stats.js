@@ -1,4 +1,10 @@
 function updateStats(guild, channel){
+
+    //Vérification de l'existence du channel
+    if(!channel){
+        return;
+    }
+
     //Récupération des messages du channel
     channel.messages.fetch({ limit: 1 }).then( messages => {
         //Vérification de l'existence du message
